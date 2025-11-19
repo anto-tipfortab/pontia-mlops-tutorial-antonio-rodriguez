@@ -12,7 +12,7 @@ WORKDIR /code
 # Install dependencies
 COPY requirements.txt /code/
 RUN pip install --upgrade pip
-RUN pip install -no-cache-dir -r requirements.txt
+RUN pip install -r requirements.txt
 
 # Copy project
 COPY ./app /code/app
@@ -21,4 +21,5 @@ COPY ./app /code/app
 EXPOSE 8080
 
 # Run the application
+
 CMD ["uvicorn", "app.main:app", "--host", "0.0.0.0", "--port", "8080"]
