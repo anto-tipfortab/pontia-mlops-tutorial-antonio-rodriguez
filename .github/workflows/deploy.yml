@@ -23,6 +23,7 @@ jobs:
 
       - name: Build Docker image
         run: |
+          cp requirements.txt ./deployment/requirements.txt
           docker build -t ${{ secrets.ACR_NAME }}/${{ vars.IMAGE_NAME }} ./deployment
 
       - name: Push Docker image to ACR
@@ -50,4 +51,5 @@ jobs:
 
       - name: Probe REST API
         run: |
+
           curl --fail http://${{ vars.IMAGE_NAME }}-${{ github.run_id }}.eastus.azurecontainer.io:8080/health
